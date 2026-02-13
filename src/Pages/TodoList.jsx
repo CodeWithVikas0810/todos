@@ -3,7 +3,7 @@ import axios from "axios";
 import List from "../Components/List";
 import { useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:5000/api/todos";
+const URL = "https://todo-backend-1-8ra9.onrender.com";
 
 function TodoList() {
   const [input, setInput] = useState("");
