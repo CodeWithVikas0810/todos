@@ -11,7 +11,8 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/auth/signup", { name, email, password })
+      .post("https://todo-backend-1-8ra9.onrender.com/api/auth/signup
+", { name, email, password })
       .then((res) => {
         console.log(res.data);
         navigate("/login");
