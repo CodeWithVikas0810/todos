@@ -3,7 +3,7 @@ import axios from "axios";
 import List from "../Components/List";
 import { useNavigate } from "react-router-dom";
 
-const URL = "https://todo-backend-1-8ra9.onrender.com/api/todos";
+const URL = "http://localhost:5000/api/todos";
 
 function TodoList() {
   const [input, setInput] = useState("");
@@ -19,7 +19,7 @@ function TodoList() {
     } else {
       fetchTodos();
     }
-  }, []);
+  }, [navigate]);
 
   const fetchTodos = async () => {
     const userId = localStorage.getItem("userId");
@@ -105,7 +105,7 @@ function TodoList() {
           <h1 className="text-3xl font-bold  text-white">My Todo App</h1>
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition duration-200 hover:scale-105 font-medium shadow-md"
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition duration-200 hover:scale-105 cursor-pointer font-medium shadow-md"
           >
             Logout
           </button>
@@ -127,12 +127,24 @@ function TodoList() {
               onClick={handleSubmit}
               className="border rounded-lg p-2 text-white bg-blue-500 hover:bg-blue-600 px-4 py-1 cursor-pointer transition duration-200 hover:scale-105"
             >
-              {loading ? "Adding..." : "Add"}
+              {loading
+                ? edit
+                  ? "Updating..."
+                  : "Adding..."
+                : edit
+                  ? "Update"
+                  : "Add"}
             </button>
             <button
               onClick={handleCancel}
               disabled={!edit}
-              className="border rounded-lg p-2 text-white bg-blue-500 hover:bg-blue-600 px-4 py-1 cursor-pointer transition duration-200 hover:scale-105"
+              className={`border rounded-lg p-2 text-white  px-4 py-1 
+                  ${
+                    edit
+                      ? "bg-blue-500 cursor-pointer transition duration-200 hover:scale-105 hover:bg-blue-600 "
+                      : "bg-gray-400 cursor-not-allowed"
+                  }
+                `}
             >
               Cancel
             </button>
