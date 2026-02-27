@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const valid = email.trim() && password.trim();
 
   useEffect(() => {
     setEmail("");
@@ -27,18 +31,19 @@ function Login() {
           // navigate("/signup");
           // alert("You are not registered");
           console.log("wrong");
-          alert("Wrong credentials");
+          toast.error("Wrong credentials");
         }
       })
       .catch((err) => {
         if (err.response) {
-          alert(err.response.data.message || "Login failed");
+          // alert(err.response.data.message || "Login failed");
+          toast.error(err.response?.data?.message || "Login failed");
         } else if (err.request) {
-          alert(
+          toast.error(
             "Server is not responding. Please check if the backend is running.",
           );
         } else {
-          alert("An error occurred. Please try again.");
+          toast.error("An error occurred. Please try again.");
         }
       });
   };
@@ -80,7 +85,14 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+            disabled={!valid}
+            className={`w-full  py-2 rounded-md  
+              ${
+                valid
+                  ? "bg-blue-600 text-white hover:bg-blue-700 transition duration-200 cursor-pointer"
+                  : "bg-gray-400 cursor-not-allowed"
+              }
+              `}
           >
             Login
           </button>
