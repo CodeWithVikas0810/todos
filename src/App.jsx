@@ -6,7 +6,7 @@ import Login from "./Pages/Login.jsx";
 import TodoList from "./Pages/TodoList.jsx";
 import { Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import the CSS
+import "react-toastify/dist/ReactToastify.css"; 
 
 function App() {
   return (
