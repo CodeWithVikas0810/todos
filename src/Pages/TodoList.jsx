@@ -137,10 +137,10 @@ function TodoList() {
             </button>
             <button
               onClick={handleCancel}
-              disabled={!edit}
+              disabled={!input.trim()}
               className={`border rounded-lg p-2 text-white  px-4 py-1 
                   ${
-                    edit
+                    input.trim()
                       ? "bg-blue-500 cursor-pointer transition duration-200 hover:scale-105 hover:bg-blue-600 "
                       : "bg-gray-400 cursor-not-allowed"
                   }
